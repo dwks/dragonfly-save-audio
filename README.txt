@@ -20,18 +20,18 @@ index 0d0f623..785f1c6 100644
          NatlinkEngine._log.debug("Grammar %s: received recognition %r."
                                   % (self.grammar._name, words))
  
-+        wav = results.getWave()^M
-+        if(len(wav) > 0 and words != "reject"):^M
-+            import time^M
-+            name = "rec-%.03f" % time.time()^M
-+            print 'Recognition', name, ', wav len =', len(wav), 'words =', words^M
-+            f = open("\\recognition\\" + name + ".wav", "wb")^M
-+            f.write(wav)^M
-+            f.close()^M
-+            f = open("\\recognition\\" + name + ".txt", "wb")^M
-+            f.write(str(words))^M
-+            f.close()^M
-+^M
++        wav = results.getWave()
++        if(len(wav) > 0 and words != "reject"):
++            import time
++            name = "rec-%.03f" % time.time()
++            print 'Recognition', name, ', wav len =', len(wav), 'words =', words
++            f = open("\\recognition\\" + name + ".wav", "wb")
++            f.write(wav)
++            f.close()
++            f = open("\\recognition\\" + name + ".txt", "wb")
++            f.write(str(words))
++            f.close()
++
          if hasattr(self.grammar, "process_results"):
              if not self.grammar.process_results(words, results):
                  return
