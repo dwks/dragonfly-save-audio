@@ -1,0 +1,38 @@
+This is a patch to natlink to save audio/text of recognitions. It will work
+with any front end including dragonfly and aenea. It's also possible to write
+this code in the process_results function of a specific grammar, but this is
+short and simple. It saves each phrase in a .wav file named according to the
+current time, and also save the recognition results (list of words) to a
+corresponding .txt file.
+
+Look for a file called engine/natlink.py or engine/engine_natlink.py, depending
+on your version of natlink. For me the file is
+C:\Python27\Lib\site-packages\dragonfly\engine\engine_natlink.py. Backup the
+file and then just edit it inline.
+
+
+
+diff --git a/engine_natlink--original.py b/engine_natlink.py
+index 0d0f623..785f1c6 100644
+--- a/engine_natlink--original.py
++++ b/engine_natlink.py
+@@ -231,6 +231,18 @@ class GrammarWrapper(object):
+         NatlinkEngine._log.debug("Grammar %s: received recognition %r."
+                                  % (self.grammar._name, words))
+ 
++        wav = results.getWave()^M
++        if(len(wav) > 0 and words != "reject"):^M
++            import time^M
++            name = "rec-%.03f" % time.time()^M
++            print 'Recognition', name, ', wav len =', len(wav), 'words =', words^M
++            f = open("\\recognition\\" + name + ".wav", "wb")^M
++            f.write(wav)^M
++            f.close()^M
++            f = open("\\recognition\\" + name + ".txt", "wb")^M
++            f.write(str(words))^M
++            f.close()^M
++^M
+         if hasattr(self.grammar, "process_results"):
+             if not self.grammar.process_results(words, results):
+                 return
+
