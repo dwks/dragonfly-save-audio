@@ -10,6 +10,7 @@ on your version of natlink. For me the file is
 C:\Python27\Lib\site-packages\dragonfly\engine\engine_natlink.py. Backup the
 file and then just edit it inline.
 
+IMPORTANT NOTE: you will have to manually create the directory \recognition!
 
 
 diff --git a/engine_natlink--original.py b/engine_natlink.py
