@@ -1,7 +1,6 @@
-# Adapted from natlink grammar example file "_samplehypothesis.py"
-# and the dragonfly-save-audio patch by dwks:
-# https://github.com/dwks/dragonfly-save-audio
-#
+# Adapted by Danesprite from natlink grammar example file
+# "_samplehypothesis.py" and the original dragonfly-save-audio patch by dwks.
+# For more info, see https://github.com/dwks/dragonfly-save-audio
 #
 # Natlink grammar module to save audio and words from natlink into a
 # specified directory. This module generates .txt files with the words and
@@ -56,7 +55,7 @@ class SaveAudioGrammar(GrammarBase):
     def initialize(self):
         self.load(self.gramSpec, hypothesis=1, allResults=1)
         self.activateAll()
-        self.enabled = True
+        self.enabled = True  # Start saving audio by default.
         self.saveRejects = False
 
     @classmethod
